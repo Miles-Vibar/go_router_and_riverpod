@@ -25,23 +25,18 @@ class HistoryTab extends ConsumerWidget {
                 onTap: () => (),
                 leading: AspectRatio(
                   aspectRatio: 1 / 1,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 12.0,
-                      bottom: 12.0,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.primaries[lastIndex],
                     ),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.primaries[lastIndex],
-                      ),
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          index.toString(),
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        index.toString(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ),

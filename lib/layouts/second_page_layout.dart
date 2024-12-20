@@ -15,7 +15,7 @@ class SecondPageLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Page'),
+        title: const Text('StatefulShellRoute'),
         leading: DrawerButton(
           onPressed: () => scaffoldKey.currentState?.openDrawer(),
         ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,8 +10,26 @@ import 'package:routing_app/layouts/third_page_layout.dart';
 import 'package:routing_app/pages/second_page_first_screen.dart';
 import 'package:routing_app/pages/second_page_second_screen.dart';
 import 'package:routing_app/pages/second_page_third_screen.dart';
+import 'package:window_manager/window_manager.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isWindows) {
+    await windowManager.ensureInitialized();
+
+    WindowOptions windowOptions = const WindowOptions(
+      size: Size(480, 1024),
+      center: true,
+      minimumSize: Size(480, 1024),
+    );
+
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.show();
+      await windowManager.focus();
+    });
+  }
+
   runApp(ProviderScope(child: MyApp()));
 }
 

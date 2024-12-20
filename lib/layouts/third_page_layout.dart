@@ -41,7 +41,8 @@ class _ThirdPageLayoutState extends ConsumerState<ThirdPageLayout> {
                   builder: (context) {
                     return AlertDialog(
                       title: const Text('Deletion of History'),
-                      content: const Text('Delete all entries in history? This action is irreversible.'),
+                      content: const Text(
+                          'Delete all entries in history? This action is irreversible.'),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
@@ -66,11 +67,15 @@ class _ThirdPageLayoutState extends ConsumerState<ThirdPageLayout> {
             )
           ],
         ),
-        body: const TabBarView(
-          children: [
-            CalculatorTab(),
-            HistoryTab(),
-          ],
+        body: Builder(
+          builder: (context) {
+            return const TabBarView(
+              children: [
+                CalculatorTab(),
+                HistoryTab(),
+              ],
+            );
+          }
         ),
       ),
     );

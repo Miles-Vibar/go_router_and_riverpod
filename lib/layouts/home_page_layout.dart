@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:routing_app/pages/calculator_tab.dart';
+import 'package:routing_app/pages/first_tab.dart';
+import 'package:routing_app/providers/keyboard_listener_provider.dart';
 
 import '../pages/second_tab.dart';
 
-class HomePageLayout extends StatelessWidget {
+class HomePageLayout extends ConsumerWidget {
   const HomePageLayout({
     super.key,
     required this.scaffoldKey,
@@ -17,7 +19,7 @@ class HomePageLayout extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -28,14 +30,17 @@ class HomePageLayout extends StatelessWidget {
           ),
           bottom: const TabBar(
             tabs: [
-              Tab(icon: Text('First Tab')),
-              Tab(icon: Text('Second Tab')),
+              Tab(icon: Text('Keyboard Presses')),
+              Tab(icon: Text('GoRoute')),
             ],
           ),
+          actions: [
+            IconButton(onPressed: () => ref.read(keyboardListenerNotifierProvider.notifier).deleteAll(), icon: const Icon(Icons.delete))
+          ],
         ),
         body: TabBarView(
           children: [
-            const Placeholder(),
+            const FirstTab(),
             SecondTab(
               state: state,
               child: child,
